@@ -5,9 +5,13 @@ def get_contribution_list():
     print('What\'s your GithHub account?')
     user = input()
     client = GitHubClient(user)
-    contributions = client.contributions()
-    print('This is your contribution list...')
-    for contribution in contributions:
-        print('{} contributions on {}'.format(contribution['data-count'], contribution['data-date']))
 
+    print('Your longest contribution is...')
+    contributions = client.longest_contribution()
+    start_longest_contribution = contributions[0]
+    end_longest_contribution = contributions[1]
+    
+    print('- start date {} with {} contributions'.format(start_longest_contribution[1], start_longest_contribution[2]))
+    print('- end date {} with {} contributions'.format(end_longest_contribution[1], end_longest_contribution[2]))
+    print('- total days {}'.format(end_longest_contribution[0] - start_longest_contribution[0] + 1))
 get_contribution_list()

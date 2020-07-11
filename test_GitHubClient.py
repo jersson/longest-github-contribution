@@ -7,9 +7,16 @@ def test_create_valid_class():
 
     assert client.user == user
 
-def test_get_valid_contribution_list():
+def test_valid_contribution():
     user = 'jersson'
     client = GitHubClient(user)
     contributions = client.contributions()
+
+    assert contributions is not None
+
+def test_valid_longest_contribution():
+    user = 'jersson'
+    client = GitHubClient(user)
+    contributions = client.longest_contribution()
 
     assert contributions is not None
