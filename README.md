@@ -1,7 +1,15 @@
 # longest-github-contribution
-An easy way to check what was your longest contribution on GitHub. For acomplish my goal I'm using the class `HtmlParser` I've created on my [web-scraping-intro](https://github.com/jersson/web-scraping-intro) repo, you can check that code too :smile: 
+An easy way to check what was the longest contribution on GitHub for any public user. For acomplish my goal I'm using a class `HtmlParser` that I've created on my [web-scraping-intro](https://github.com/jersson/web-scraping-intro) repo, you can check that code also :smile: 
 
-I'm open to suggestions, if you have any please let me know :innocent:
+I'm open to suggestions, if you have any idea/comment/etc please let me know :innocent:
+
+## Sumary
+  - [Installation](#installation)
+    - [Prerequisites](#prerequisites)
+    - [Dependencies](#dependencies)
+  - [how to run the code](#how-to-run-the-code)
+  - [How to test the code](#how-to-test-the-code)
+  - [References](#references)
 
 ## Installation
 
@@ -29,12 +37,11 @@ You'll see something like this:
   - start date 2020-03-19 with 1 contributions
   - end date 2020-04-03 with 2 contributions
   - 16 days in a row!
-  ...
 ```
 
 ## How to test the code
 
-We are using `pytest` so you can run that command
+We are using `pytest` so you can launch that command
 
 ```
  $ pytest
