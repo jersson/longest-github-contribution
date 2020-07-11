@@ -17,10 +17,9 @@ You'll see something like this:
 ```
   What's your GithHub account?
   > jersson
-  This is your contribution list...
-  0 contributions on 2019-07-07
-  0 contributions on 2019-07-08
-  0 contributions on 2019-07-09
-  0 contributions on 2019-07-10
+  Your longest contribution is...
+  - start date 2020-03-19 with 1 contributions
+  - end date 2020-04-03 with 2 contributions
+  - total days 16
   ...
 ```
