@@ -1,7 +1,7 @@
 from GitHubClient import GitHubClient
 
 
-def test_get_valid_contribution_list():
+def get_contribution_list():
     print('What\'s your GithHub account?')
     user = input()
     client = GitHubClient(user)
@@ -10,5 +10,4 @@ def test_get_valid_contribution_list():
     for contribution in contributions:
         print('{} contributions on {}'.format(contribution['data-count'], contribution['data-date']))
 
-
-test_get_valid_contribution_list()
+get_contribution_list()
