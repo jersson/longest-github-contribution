@@ -28,13 +28,13 @@ You'll see something like this:
   Your longest contribution is...
   - start date 2020-03-19 with 1 contributions
   - end date 2020-04-03 with 2 contributions
-  - total days 16
+  - 16 days in a row!
   ...
 ```
 
 ## How to test the code
 
-We are using `pytest` so you can run the `pytest` command
+We are using `pytest` so you can run that command
 
 ```
  $ pytest

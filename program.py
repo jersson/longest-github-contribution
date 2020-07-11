@@ -13,5 +13,5 @@ def get_contribution_list():
     
     print('- start date {} with {} contributions'.format(start_longest_contribution[1], start_longest_contribution[2]))
     print('- end date {} with {} contributions'.format(end_longest_contribution[1], end_longest_contribution[2]))
-    print('- total days {}'.format(end_longest_contribution[0] - start_longest_contribution[0] + 1))
-get_contribution_list()
+    print('- {} days in a row!'.format(end_longest_contribution[0] - start_longest_contribution[0] + 1))
+get_contribution_list() 
