@@ -1,8 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        margin-left: 0.5em;
+        padding: 0;
+        font-family: "Calibri", "Roboto", "sans-serif";
+      }
+      div {
+        margin-left: 0.5em;
+        margin-top: 0.5em;
+      }
+      ul {
+        padding-left: 0.5em;
+      }
+      i {
+        padding-left: 0em;
+      }
+    </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Longest GitHub contribution</title>
   </head>
   <body>
@@ -13,12 +34,12 @@
     </p>
 
     <div>
-      <input type="text" id="username" />
+      <i class="fa fa-github fa-2x"></i>&nbsp;<input type="text" id="username" />
       <button id="getLongestContribution" onclick="getLongestContribution()">
         Get the longest contribution
-      </button> <br/>
-      <div id="summary"></div>
+      </button>
     </div>
+    <div id="summary"></div>
     <script>
       async function getLongestContribution() {
         const username = document.getElementById("username").value;
@@ -30,12 +51,14 @@
           startLongestContribution = contributions[0];
           endLongestContribution = contributions[1];
 
-          let message = `- ${endLongestContribution[0] - startLongestContribution[0] + 1} days in a row!`;  
-          message += `\n- start date ${startLongestContribution[1]} with ${startLongestContribution[2]} contributions`;
-          message += `\n- end date ${endLongestContribution[1]} with ${endLongestContribution[2]} contributions`;
-          
-          const summary = document.getElementById('summary');
-          summary.innerText = message;
+          let message = '<ul>';
+          message += `<li> ${endLongestContribution[0] - startLongestContribution[0] + 1} days in a row!</li>`;
+          message += `<li> start date ${startLongestContribution[1]} with ${startLongestContribution[2]} contributions</li>`;
+          message += `<li> end date ${endLongestContribution[1]} with ${endLongestContribution[2]} contributions</li>`;
+          message += '</ul>';
+
+          const summary = document.getElementById("summary");
+          summary.innerHTML = message;
         } else {
           await response.json().catch(console.log);
         }
