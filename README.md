@@ -1,14 +1,19 @@
 # longest-github-contribution
-An easy way to check what was the longest contribution on GitHub for any public user. For acomplish my goal I'm using a class `HtmlParser` that I've created on my [web-scraping-intro](https://github.com/jersson/web-scraping-intro) repo, you can check that code also :smile: 
+
+An easy way to check what was the longest contribution on GitHub for any public user. For acomplish my goal I'm using a class `HtmlParser` that I've created on my [web-scraping-intro](https://github.com/jersson/web-scraping-intro) repo, you can check that code also :smile:
 
 I'm open to suggestions, if you have any idea/comment/etc please let me know :innocent:
 
 ## Sumary
+
+- [longest-github-contribution](#longest-github-contribution)
+  - [Sumary](#sumary)
   - [Installation](#installation)
     - [Prerequisites](#prerequisites)
     - [Dependencies](#dependencies)
   - [how to run the code](#how-to-run-the-code)
-  - [How to test the code](#how-to-test-the-code)
+  - [how to run the web app](#how-to-run-the-web-app)
+  - [How to run the automated tests](#how-to-run-the-automated-tests)
   - [References](#references)
 
 ## Installation
@@ -21,15 +26,17 @@ I'm open to suggestions, if you have any idea/comment/etc please let me know :in
 ### Dependencies
 
 ```
- $ pip install -r requirements.txt
+  $ pip install -r requirements.txt
 ```
 
 ## how to run the code
+
 ```
   $ python program.py
 ```
 
 You'll see something like this:
+
 ```
   What's your GithHub account?
   > jersson
@@ -39,12 +46,26 @@ You'll see something like this:
   - 16 days in a row!
 ```
 
-## How to test the code
+## how to run the web app
+
+```
+  $ python server.py
+```
+
+If everything is okay, you'll see this message:
+
+```
+  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+```
+
+So can go and test it
+
+## How to run the automated tests
 
 We are using `pytest` so you can launch that command
 
 ```
- $ pytest
+  $ pytest
 ```
 
 You'll see something like this:
@@ -62,4 +83,5 @@ You'll see something like this:
 ```
 
 ## References
+
 TBD

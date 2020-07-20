@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Longest GitHub contribution</title>
+  </head>
+  <body>
+    <h1>Longest Github contribution</h1>
+    <p>
+      An easy way to check what is the longest contribution on GitHub (for any
+      user, of course)
+    </p>
+
+    <div>
+      <input type="text" id="username" />
+      <button id="getLongestContribution" onclick="getLongestContribution()">
+        Get the longest contribution
+      </button> <br/>
+      <div id="summary"></div>
+    </div>
+    <script>
+      async function getLongestContribution() {
+        const username = document.getElementById("username").value;
+        const url = `/longest-contribution/${username}`;
+        const response = await fetch(url);
+
+        if (response.ok) {
+          const contributions = await response.json();
+          startLongestContribution = contributions[0];
+          endLongestContribution = contributions[1];
+
+          let message = `- ${endLongestContribution[0] - startLongestContribution[0] + 1} days in a row!`;  
+          message += `\n- start date ${startLongestContribution[1]} with ${startLongestContribution[2]} contributions`;
+          message += `\n- end date ${endLongestContribution[1]} with ${endLongestContribution[2]} contributions`;
+          
+          const summary = document.getElementById('summary');
+          summary.innerText = message;
+        } else {
+          await response.json().catch(console.log);
+        }
+      }
+    </script>
+  </body>
+</html>
