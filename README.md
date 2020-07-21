@@ -1,20 +1,21 @@
 # longest-github-contribution
 
-An easy way to check what was the longest contribution on GitHub for any public user. For acomplish my goal I'm using a class `HtmlParser` that I've created on my [web-scraping-intro](https://github.com/jersson/web-scraping-intro) repo, you can check that code also :smile:
+An easy way (web and console) to check what is the longest contribution on GitHub for any public user. 
+
+For acomplish my goal I'm using the class `HtmlParser` that I've created on my [web-scraping-intro](https://github.com/jersson/web-scraping-intro) repo. You can check that code also :smile:
 
 I'm open to suggestions, if you have any idea/comment/etc please let me know :innocent:
 
 ## Sumary
 
-- [longest-github-contribution](#longest-github-contribution)
-  - [Sumary](#sumary)
-  - [Installation](#installation)
-    - [Prerequisites](#prerequisites)
-    - [Dependencies](#dependencies)
-  - [how to run the code](#how-to-run-the-code)
-  - [how to run the web app](#how-to-run-the-web-app)
+- [Installation](#installation)
+  - [Prerequisites](#prerequisites)
+  - [Dependencies](#dependencies)
+- [Usage](#usage)
+  - [How to run the code as a console app](#how-to-run-the-code-as-a-console-program)
+  - [How to run the web app](#how-to-run-the-web-app)
   - [How to run the automated tests](#how-to-run-the-automated-tests)
-  - [References](#references)
+- [References](#references)
 
 ## Installation
 
@@ -29,7 +30,8 @@ I'm open to suggestions, if you have any idea/comment/etc please let me know :in
   $ pip install -r requirements.txt
 ```
 
-## how to run the code
+## Usage
+### How to run the code as a console program
 
 ```
   $ python program.py
@@ -46,7 +48,7 @@ You'll see something like this:
   - 16 days in a row!
 ```
 
-## how to run the web app
+### How to run the web app
 
 ```
   $ python server.py
@@ -60,7 +62,7 @@ If everything is okay, you'll see this message:
 
 So can go and test it
 
-## How to run the automated tests
+### How to run the automated tests
 
 We are using `pytest` so you can launch that command
 
