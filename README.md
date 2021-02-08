@@ -6,7 +6,7 @@ For acomplish my goal I'm using the class `HtmlParser` that I've created on my [
 
 I'm open to suggestions, if you have any idea/comment/etc please let me know :innocent:
 
-## Sumary
+## Summary
 
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
