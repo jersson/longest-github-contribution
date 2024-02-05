@@ -1,61 +1,64 @@
 from HtmlParser import HtmlParser
-from utils import log_error
-from bs4 import BeautifulSoup
-from bs4 import Tag
+from bs4 import BeautifulSoup, Tag
+from datetime import datetime, timedelta
+
+from utils import log_error, date_diff_in_days
 
 
 class GitHubClient:
     def __init__(self, user: str):
         self.user = user
-        self.__contributions = None
 
-    def __has_data_level(self, tag: Tag):
-        return tag.has_attr("data-level")
+    def get_user_contributions(self) -> list:
+        url = "https://github.com/{}".format(self.user)
+        parser = HtmlParser()
+        html: BeautifulSoup
+        html = parser.request(url)
 
-    def contributions(self) -> list:
-        result = None
-        try:
-            url = "https://github.com/{}".format(self.user)
-            parser = HtmlParser()
-            html: BeautifulSoup
-            html = parser.request(url)
-
-            if html is not None:
-                contributions = html.findAll(self.__has_data_level)
-                self.__contributions = contributions
-                result = contributions
-        except Exception as error:
-            log_error(error)
-        finally:
-            return result
+        if html is not None:
+            contributions = html.select("[data-level][data-date]")
+            data = []
+            for element in contributions:
+                try:
+                    data_date = datetime.strptime(element["data-date"], "%Y-%m-%d")
+                    data_level = element["data-level"]
+                    data.append((data_date, data_level))
+                except ValueError:
+                    pass
+            data.sort(key=lambda x: x[0])
+            return data
+        else:
+            return []
 
     def longest_contribution(self) -> list:
-        result = []
+        user_contributions = self.get_user_contributions()
 
-        if self.__contributions is None:
-            self.__contributions = self.contributions()
+        lower_date = user_contributions[0][0]
+        higher_date = user_contributions[0][0]
 
-        max, min = 0, 0
-        old_max, old_min = max, min
-        for index in range(len(self.__contributions)):
-            if int(self.__contributions[index]["data-level"]) > 0:
-                max = index
+        old_lower_date = lower_date
+        old_higher_date = higher_date
+
+        for contribution in user_contributions:
+            if int(contribution[1]) > 0:
+                higher_date = contribution[0]
             else:
-                if max - min > old_max - old_min:
-                    old_max, old_min = max, min
-                min = index + 1
-                max = min
+                current_date_diff_in_days = date_diff_in_days(higher_date, lower_date)
+                old_date_diff_in_days = date_diff_in_days(
+                    old_higher_date, old_lower_date
+                )
+                if current_date_diff_in_days > old_date_diff_in_days:
+                    old_higher_date = higher_date
+                    old_lower_date = lower_date
+                one_day = timedelta(days=1)
+                lower_date = contribution[0] + one_day
+                higher_date = lower_date
 
-        if old_max - old_min > max - min:
-            max, min = old_max, old_min
+        current_date_diff_in_days = date_diff_in_days(higher_date, lower_date)
+        old_date_diff_in_days = date_diff_in_days(old_higher_date, old_lower_date)
 
-        for i in [min, max]:
-            result.append(
-                [
-                    i,
-                    self.__contributions[i]["data-date"],
-                    self.__contributions[i]["data-count"],
-                ]
-            )
+        if old_date_diff_in_days > current_date_diff_in_days:
+            higher_date = old_higher_date
+            lower_date = old_lower_date
 
-        return result
+        return [lower_date, higher_date]
