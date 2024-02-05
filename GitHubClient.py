@@ -2,15 +2,15 @@ from HtmlParser import HtmlParser
 from bs4 import BeautifulSoup, Tag
 from datetime import datetime, timedelta
 
-from utils import log_error, date_diff_in_days
+from utils import log_error, diff_in_days, next_day
 
 
 class GitHubClient:
-    def __init__(self, user: str):
-        self.user = user
+    def __init__(self):
+        pass
 
-    def get_user_contributions(self) -> list:
-        url = "https://github.com/{}".format(self.user)
+    def get_user_contributions(self, user: str) -> list:
+        url = "https://github.com/{}".format(user)
         parser = HtmlParser()
         html: BeautifulSoup
         html = parser.request(url)
@@ -30,8 +30,8 @@ class GitHubClient:
         else:
             return []
 
-    def longest_contribution(self) -> list:
-        user_contributions = self.get_user_contributions()
+    def longest_contribution(self, user: str) -> list:
+        user_contributions = self.get_user_contributions(user)
 
         lower_date = user_contributions[0][0]
         higher_date = user_contributions[0][0]
@@ -43,21 +43,19 @@ class GitHubClient:
             if int(contribution[1]) > 0:
                 higher_date = contribution[0]
             else:
-                current_date_diff_in_days = date_diff_in_days(higher_date, lower_date)
-                old_date_diff_in_days = date_diff_in_days(
-                    old_higher_date, old_lower_date
-                )
-                if current_date_diff_in_days > old_date_diff_in_days:
+                current_diff_in_days = diff_in_days(higher_date, lower_date)
+                old_diff_in_days = diff_in_days(old_higher_date, old_lower_date)
+                if current_diff_in_days > old_diff_in_days:
                     old_higher_date = higher_date
                     old_lower_date = lower_date
-                one_day = timedelta(days=1)
-                lower_date = contribution[0] + one_day
+
+                lower_date = next_day(contribution[0])
                 higher_date = lower_date
 
-        current_date_diff_in_days = date_diff_in_days(higher_date, lower_date)
-        old_date_diff_in_days = date_diff_in_days(old_higher_date, old_lower_date)
+        current_diff_in_days = diff_in_days(higher_date, lower_date)
+        old_diff_in_days = diff_in_days(old_higher_date, old_lower_date)
 
-        if old_date_diff_in_days > current_date_diff_in_days:
+        if old_diff_in_days > current_diff_in_days:
             higher_date = old_higher_date
             lower_date = old_lower_date
 

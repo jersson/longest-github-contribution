@@ -1,21 +1,23 @@
 from GitHubClient import GitHubClient
+from utils import diff_in_days
 
 
-def get_contribution_list():
+def main():
     print("What's your GithHub account?")
     user = input()
-    client = GitHubClient(user)
+    client = GitHubClient()
 
     print("Your longest contribution is...")
-    longest_contributions = client.longest_contribution()
+    longest_contributions = client.longest_contribution(user)
 
-    print(longest_contributions)
-    # start_longest_contribution = contributions[0]
-    # end_longest_contribution = contributions[1]
+    lower_contribution_date = longest_contributions[0]
+    higher_contribution_date = longest_contributions[1]
+    contribution_days = diff_in_days(higher_contribution_date, lower_contribution_date)
 
-    # print('- start date {} with {} contributions'.format(start_longest_contribution[1], start_longest_contribution[2]))
-    # print('- end date {} with {} contributions'.format(end_longest_contribution[1], end_longest_contribution[2]))
-    # print('- {} days in a row!'.format(end_longest_contribution[0] - start_longest_contribution[0] + 1))
+    print("- start date {}".format(lower_contribution_date))
+    print("- end date {}".format(higher_contribution_date))
+    print("- {} days in a row!".format(contribution_days))
 
 
-get_contribution_list()
+if __name__ == "__main__":
+    main()
