@@ -3,7 +3,7 @@ from requests import Response
 from requests.exceptions import RequestException
 from bs4 import BeautifulSoup
 from contextlib import closing
-from utils import log_error
+from src.utils.logs import log_error
 
 
 class HtmlParser:

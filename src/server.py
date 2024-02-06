@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-from github_client import GitHubClient
+from src.infrastructure.github_client import GitHubClient
 
 
 app = Flask(__name__)

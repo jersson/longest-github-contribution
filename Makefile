@@ -2,10 +2,10 @@ prepare:
 	pip install -r requirements.txt
 
 start-console:
-	python console.py
+	export PYTHONPATH='./src:' && python src/console.py
 
 start-web:
-	python server.py
+	export PYTHONPATH='./src:' && python src/server.py
 
 test:
 	pytest -v

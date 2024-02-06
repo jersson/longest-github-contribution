@@ -1,8 +1,9 @@
-from html_parser import HtmlParser
-from bs4 import BeautifulSoup
 from datetime import datetime
+from bs4 import BeautifulSoup
 
-from utils import diff_in_days, next_day
+from src.infrastructure.html_parser import HtmlParser
+
+from src.utils.date import diff_in_days, next_day
 
 
 class GitHubClient:

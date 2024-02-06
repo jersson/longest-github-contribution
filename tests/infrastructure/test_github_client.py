@@ -1,4 +1,4 @@
-from github_client import GitHubClient
+from src.infrastructure.github_client import GitHubClient
 
 
 # TODO: Improve this test case

@@ -1,5 +1,5 @@
-from github_client import GitHubClient
-from utils import diff_in_days
+from src.infrastructure.github_client import GitHubClient
+from src.utils.date import diff_in_days
 
 
 def main():
