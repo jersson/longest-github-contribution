@@ -1,4 +1,4 @@
-from HtmlParser import HtmlParser
+from html_parser import HtmlParser
 
 
 def test_make_valid_request():

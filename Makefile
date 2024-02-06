@@ -2,7 +2,7 @@ prepare:
 	pip install -r requirements.txt
 
 start-console:
-	python program.py
+	python console.py
 
 start-web:
 	python server.py

@@ -1,4 +1,4 @@
-from HtmlParser import HtmlParser
+from html_parser import HtmlParser
 from bs4 import BeautifulSoup
 from datetime import datetime
 

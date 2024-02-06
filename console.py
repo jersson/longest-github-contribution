@@ -1,4 +1,4 @@
-from GitHubClient import GitHubClient
+from github_client import GitHubClient
 from utils import diff_in_days
 
 
