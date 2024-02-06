@@ -10,13 +10,13 @@ def main():
     print("Your longest contribution is...")
     longest_contributions = client.longest_contribution(user)
 
-    lower_contribution_date = longest_contributions[0]
-    higher_contribution_date = longest_contributions[1]
-    contribution_days = diff_in_days(higher_contribution_date, lower_contribution_date)
+    start_contribution_date = longest_contributions[0]
+    end_contribution_date = longest_contributions[1]
+    contribution_in_days = diff_in_days(end_contribution_date, start_contribution_date)
 
-    print("- start date {}".format(lower_contribution_date))
-    print("- end date {}".format(higher_contribution_date))
-    print("- {} days in a row!".format(contribution_days))
+    print("- start date {}".format(start_contribution_date))
+    print("- end date {}".format(end_contribution_date))
+    print("- {} days in a row!".format(contribution_in_days))
 
 
 if __name__ == "__main__":

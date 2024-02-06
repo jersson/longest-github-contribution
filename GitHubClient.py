@@ -1,8 +1,8 @@
 from HtmlParser import HtmlParser
-from bs4 import BeautifulSoup, Tag
-from datetime import datetime, timedelta
+from bs4 import BeautifulSoup
+from datetime import datetime
 
-from utils import log_error, diff_in_days, next_day
+from utils import diff_in_days, next_day
 
 
 class GitHubClient:
@@ -33,30 +33,30 @@ class GitHubClient:
     def longest_contribution(self, user: str) -> list:
         user_contributions = self.get_user_contributions(user)
 
-        lower_date = user_contributions[0][0]
-        higher_date = user_contributions[0][0]
+        start_date = user_contributions[0][0]
+        end_date = user_contributions[0][0]
 
-        old_lower_date = lower_date
-        old_higher_date = higher_date
+        old_start_date = start_date
+        old_end_date = end_date
 
         for contribution in user_contributions:
             if int(contribution[1]) > 0:
-                higher_date = contribution[0]
+                end_date = contribution[0]
             else:
-                current_diff_in_days = diff_in_days(higher_date, lower_date)
-                old_diff_in_days = diff_in_days(old_higher_date, old_lower_date)
+                current_diff_in_days = diff_in_days(end_date, start_date)
+                old_diff_in_days = diff_in_days(old_end_date, old_start_date)
                 if current_diff_in_days > old_diff_in_days:
-                    old_higher_date = higher_date
-                    old_lower_date = lower_date
+                    old_end_date = end_date
+                    old_start_date = start_date
 
-                lower_date = next_day(contribution[0])
-                higher_date = lower_date
+                start_date = next_day(contribution[0])
+                end_date = start_date
 
-        current_diff_in_days = diff_in_days(higher_date, lower_date)
-        old_diff_in_days = diff_in_days(old_higher_date, old_lower_date)
+        current_diff_in_days = diff_in_days(end_date, start_date)
+        old_diff_in_days = diff_in_days(old_end_date, old_start_date)
 
         if old_diff_in_days > current_diff_in_days:
-            higher_date = old_higher_date
-            lower_date = old_lower_date
+            end_date = old_end_date
+            start_date = old_start_date
 
-        return [lower_date, higher_date]
+        return [start_date, end_date]

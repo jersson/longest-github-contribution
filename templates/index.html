@@ -48,13 +48,15 @@
 
         if (response.ok) {
           const contributions = await response.json();
-          startLongestContribution = contributions[0];
-          endLongestContribution = contributions[1];
+          lowerContributionDate = new Date(contributions[0]);
+          higherContributionDate = new Date(contributions[1]);
+          contributionInMilliseconds = higherContributionDate - lowerContributionDate 
+          contributionInDays = Math.floor(contributionInMilliseconds/(1000 * 60 * 60 * 24)) 
 
           let message = '<ul>';
-          message += `<li> ${endLongestContribution[0] - startLongestContribution[0] + 1} days in a row!</li>`;
-          message += `<li> start date ${startLongestContribution[1]} with ${startLongestContribution[2]} contributions</li>`;
-          message += `<li> end date ${endLongestContribution[1]} with ${endLongestContribution[2]} contributions</li>`;
+          message += `<li> ${contributionInDays} days in a row!</li>`;
+          message += `<li> start date ${lowerContributionDate} </li>`;
+          message += `<li> end date ${higherContributionDate} </li>`;
           message += '</ul>';
 
           const summary = document.getElementById("summary");
