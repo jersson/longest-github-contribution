@@ -9,3 +9,6 @@ start-web:
 
 test:
 	pytest -v
+
+test-only:
+	pytest -v -m only

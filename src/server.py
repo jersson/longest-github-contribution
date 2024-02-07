@@ -1,13 +1,15 @@
-from flask import Flask, render_template, jsonify
-from src.infrastructure.github_client import GitHubClient
+from flask import Flask, jsonify, render_template
 
+from src.infrastructure.github_client import GitHubClient
+from src.infrastructure.html_parser import HtmlParser
 
 app = Flask(__name__)
 
 
 @app.route("/longest-contribution/<username>", methods=["GET"])
 def longest_contribution(username=None):
-    client = GitHubClient()
+    parser = HtmlParser()
+    client = GitHubClient(parser)
     contributions = client.longest_contribution(username)
 
     return jsonify(contributions)

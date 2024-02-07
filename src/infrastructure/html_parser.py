@@ -1,16 +1,14 @@
-from requests import get
-from requests import Response
-from requests.exceptions import RequestException
-from bs4 import BeautifulSoup
 from contextlib import closing
+
+import requests
+from bs4 import BeautifulSoup
+from requests.exceptions import RequestException
+
 from src.utils.logs import log_error
 
 
 class HtmlParser:
-    def __is_valid_web_response(self, res: Response) -> bool:
-        """
-        Returns True if the response seems to be HTML, False otherwise.
-        """
+    def validate_html_response(self, res: requests.Response) -> bool:
         content_type = res.headers["Content-Type"].lower()
 
         return (
@@ -19,19 +17,14 @@ class HtmlParser:
             and content_type.find("html") > -1
         )
 
-    def request(self, url: str) -> BeautifulSoup:
-        """
-        Attempts to get the content at `url` by making an HTTP GET request.
-        If the content-type of response is some kind of HTML/XML, return the
-        text content, otherwise return None.
-        """
+    def parse_requested_url(self, url: str) -> BeautifulSoup:
+        response = None
         try:
-            result = None
-            with closing(get(url, stream=True)) as response:
-                if self.__is_valid_web_response(response):
-                    result = BeautifulSoup(response.content, "html.parser")
+            with closing(requests.get(url, stream=True)) as raw_response:
+                if self.validate_html_response(raw_response):
+                    response = BeautifulSoup(raw_response.content, "html.parser")
 
         except RequestException as error:
             log_error("Error making web requests to {}: {}".format(url, error))
-        finally:
-            return result
+
+        return response

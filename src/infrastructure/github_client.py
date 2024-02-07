@@ -1,20 +1,21 @@
 from datetime import datetime
+
 from bs4 import BeautifulSoup
 
 from src.infrastructure.html_parser import HtmlParser
-
 from src.utils.date import diff_in_days, next_day
 
 
 class GitHubClient:
-    def __init__(self):
-        pass
+    parser: HtmlParser
+
+    def __init__(self, parser: HtmlParser):
+        self.parser = parser
 
     def get_user_contributions(self, user: str) -> list:
         url = "https://github.com/{}".format(user)
-        parser = HtmlParser()
         html: BeautifulSoup
-        html = parser.request(url)
+        html = self.parser.parse_requested_url(url)
 
         if html is not None:
             contributions = html.select("[data-level][data-date]")

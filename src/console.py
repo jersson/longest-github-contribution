@@ -1,13 +1,15 @@
 from src.infrastructure.github_client import GitHubClient
+from src.infrastructure.html_parser import HtmlParser
 from src.utils.date import diff_in_days
 
 
 def main():
     print("What's your GithHub account?")
     user = input()
-    client = GitHubClient()
 
     print("Your longest contribution is...")
+    parser = HtmlParser()
+    client = GitHubClient(parser)
     longest_contributions = client.longest_contribution(user)
 
     start_contribution_date = longest_contributions[0]
