@@ -48,7 +48,7 @@ I'm working a lot to make this code cleaner, so please go ahead and shot some is
 You'll see something like this:
 
 ```bash
-  What's your GithHub account?
+  What's your GitHub account?
   > jersson
   Your longest contribution is...
   - start date 2020-03-19
