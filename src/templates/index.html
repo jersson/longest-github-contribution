@@ -1,70 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <style>
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        margin-left: 0.5em;
-        padding: 0;
-        font-family: "Calibri", "Roboto", "sans-serif";
-      }
-      div {
-        margin-left: 0.5em;
-        margin-top: 0.5em;
-      }
-      ul {
-        padding-left: 0.5em;
-      }
-      i {
-        padding-left: 0em;
-      }
-    </style>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Longest GitHub contribution</title>
-  </head>
-  <body>
-    <h1>Longest Github contribution</h1>
-    <p>
-      An easy way to check what is the longest contribution on GitHub (for any
-      user, of course)
-    </p>
 
-    <div>
-      <i class="fa fa-github fa-2x"></i>&nbsp;<input type="text" id="username" />
-      <button id="getLongestContribution" onclick="getLongestContribution()">
-        Get the longest contribution
-      </button>
-    </div>
-    <div id="summary"></div>
-    <script>
-      async function getLongestContribution() {
-        const username = document.getElementById("username").value;
-        const url = `/longest-contribution/${username}`;
-        const response = await fetch(url);
+<head>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      margin-left: 0.5em;
+      padding: 0;
+      font-family: "Calibri", "Roboto", "sans-serif";
+    }
 
-        if (response.ok) {
-          const contributions = await response.json();
-          lowerContributionDate = new Date(contributions[0]);
-          higherContributionDate = new Date(contributions[1]);
-          contributionInMilliseconds = higherContributionDate - lowerContributionDate 
-          contributionInDays = Math.floor(contributionInMilliseconds/(1000 * 60 * 60 * 24)) 
+    div {
+      margin-left: 0.5em;
+      margin-top: 0.5em;
+    }
 
-          let message = '<ul>';
-          message += `<li> ${contributionInDays} days in a row!</li>`;
-          message += `<li> start date ${lowerContributionDate} </li>`;
-          message += `<li> end date ${higherContributionDate} </li>`;
-          message += '</ul>';
+    ul {
+      padding-left: 0.5em;
+    }
 
-          const summary = document.getElementById("summary");
-          summary.innerHTML = message;
-        } else {
-          await response.json().catch(console.log);
-        }
+    i {
+      padding-left: 0em;
+    }
+  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Longest GitHub contribution</title>
+</head>
+
+<body>
+  <h1>Longest Github contribution</h1>
+  <p>
+    An easy way to check what is the longest contribution on GitHub (for any
+    user, of course)
+  </p>
+
+  <div>
+    <i class="fa fa-github fa-2x"></i>&nbsp;<input type="text" id="username" />
+    <button id="getLongestContribution" onclick="getLongestContribution()">
+      Get the longest contribution
+    </button>
+  </div>
+  <div id="summary"></div>
+  <script>
+    async function getLongestContribution() {
+      const username = document.getElementById("username").value;
+      const url = `/longest-contribution/${username}`;
+      const response = await fetch(url);
+
+      if (response.ok) {
+        const contributions = await response.json();
+        lowerContributionDate = new Date(contributions[0]);
+        higherContributionDate = new Date(contributions[1]);
+        contributionInMilliseconds = higherContributionDate - lowerContributionDate
+        contributionInDays = Math.floor(contributionInMilliseconds / (1000 * 60 * 60 * 24))
+
+        let message = '<ul>';
+        message += `<li> start date ${lowerContributionDate} </li>`;
+        message += `<li> end date ${higherContributionDate} </li>`;
+        message += `<li> ${contributionInDays} days in a row!</li>`;
+        message += '</ul>';
+
+        const summary = document.getElementById("summary");
+        summary.innerHTML = message;
+      } else {
+        await response.json().catch(console.log);
       }
-    </script>
-  </body>
+    }
+  </script>
+</body>
+
 </html>

@@ -4,7 +4,7 @@ from src.utils.date import diff_in_days
 
 
 def main():
-    print("What's your GithHub account?")
+    print("What's your GitHub account?")
     user = input()
 
     print("Your longest contribution is...")
