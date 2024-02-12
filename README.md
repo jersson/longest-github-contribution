@@ -1,5 +1,7 @@
 # longest-github-contribution
 
+[![CI Process](https://github.com/jersson/longest-github-contribution/actions/workflows/python-app.yml/badge.svg)](https://github.com/jersson/longest-github-contribution/actions/workflows/python-app.yml)
+
 Easy way to check see is the longest contribution on GitHub for any public user (console and web mode)
 
 For acomplish my goal I'm using the class `HtmlParser` that I've created on my [web-scraping-intro](https://github.com/jersson/web-scraping-intro) repo. You can check that old code too :smile:
