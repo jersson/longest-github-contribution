@@ -92,8 +92,15 @@ tests/infrastructure/test_html_parser.py ....                                   
 ======================================== 6 passed in 0.07s ========================================
 ```
 
-> In some cases I'm using [mocks](https://docs.python.org/3/library/unittest.mock.html), please be my guest to see the code :smile:
->
+> - In some cases I'm using [mocks](https://docs.python.org/3/library/unittest.mock.html), please be my guest to see the code :smile:
+> - In case you want to test specific test cases, you can add the `@pytest.mark.only` annotation to work with the command `make test-only` :wink:
+
+## How to contribute
+
+Please be aware to work with [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary), and of course, [be nice](https://www.forbes.com/sites/disneyinstitute/2017/02/01/whats-the-secret-to-successful-teamwork-just-be-nice).
+
+> I'm working some bytes to explain how to automate minimal validations (commit-msg, pre-commit and so on) but if you have more ideas, please fill an issue :smile:
+
 ## References
 
 TBD
