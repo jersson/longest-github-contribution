@@ -17,8 +17,10 @@ I'm open to suggestions, if you have any idea/comment/etc please let me know :in
 
 ### Dependencies
 
+#### Local environment
+
 ```bash
-  make prepare
+  make prepare-local
 ```
 
 ## Usage

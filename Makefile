@@ -1,6 +1,10 @@
 prepare:
 	pip install -r requirements.txt
 
+prepare-local:
+	@make prepare
+	pip install -r requirements.local.txt
+
 start-console:
 	export PYTHONPATH='./src:' && python src/console.py
 
